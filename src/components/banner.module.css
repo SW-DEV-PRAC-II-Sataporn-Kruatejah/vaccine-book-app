@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt:400,500,600,700&display=swap');
+
+.banner {
+    font-family: 'Prompt', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.bannerText {
+    padding: 24px;
+    margin-right: 30%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
