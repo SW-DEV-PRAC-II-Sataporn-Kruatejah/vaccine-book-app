@@ -1,16 +1,15 @@
-import styles from "./banner.module.css"
-import Image from "next/image"
+import Image from "next/image";
 
-export default function Banner(){
+export default function Banner() {
     return (
-        <div className={styles.banner}>
+        <div className="bannercontainer flex justify-center items-center w-screen h-60 relative overflow-hidden">
             <Image src={"/img/cover.jpg"}
-            alt = "cover"
-            fill={true}
-            objectFit="cover"/>
-            <div className={styles.bannerText}>
-                <h1>ระบบจองฉีดวัคซีน</h1>
+                fill={true}
+                alt="cover"
+                objectFit="cover" />
+            <div className="bannertext absolute top-1/2 left-1/4 transform -translate-y-1/2 text-center text-white">
+                <h1 className="text-4xl font-semibold">Vaccine Reservation</h1>
             </div>
         </div>
-    )
+    );
 }
