@@ -1,7 +1,11 @@
-export default function Booking(){
-    return(
+import BookingForm from "@/components/BookingForm";
+
+export default function Booking() {
+    return (
         <main>
-            <div>RESERVATION PAGE</div>
+            <div className="bookingform">
+                <BookingForm/>
+            </div>
         </main>
     );
 }

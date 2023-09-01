@@ -1,9 +1,9 @@
 import Image from "next/image";
+import InteractiveCard from "./InteractiveCard";
 
 export default function ProductCard({ name, imgSrc }: { name: string, imgSrc: string }) {
     return (
-        <div className="card group bg-gray-100 w-80 h-72 shadow-md rounded-lg overflow-hidden transition-transform hover:scale-105 m-6">
-
+        <InteractiveCard>
             <div className="cardimg w-full h-4/5 relative overflow-hidden rounded-t-lg">
                 <Image
                     src={imgSrc}
@@ -16,6 +16,6 @@ export default function ProductCard({ name, imgSrc }: { name: string, imgSrc: st
             <div className="cardtext p-4 font-semibold text-base mb-2 text-gray-800">
                 {name}
             </div>
-        </div>
+        </InteractiveCard>
     );
 }
