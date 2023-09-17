@@ -41,7 +41,7 @@ export default function ProductCard({
                 <div className="cardtext font-semibold text-base text-gray-800">
                     {name}
                 </div>
-                <div className="rating-container">
+                <div className="rating-container" onClick={(e)=>e.stopPropagation()}>
                     <Rating
                         name="simple-controlled"
                         value={rating}

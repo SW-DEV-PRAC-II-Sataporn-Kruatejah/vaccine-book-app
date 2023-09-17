@@ -1,12 +1,14 @@
 "use client"
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Banner() {
     const cover = ["/img/cover.jpg", "/img/cover2.jpg", "/img/cover3.jpg", "/img/cover4.jpg"]
     const [index, setIndex] = useState(0)
+    const router = useRouter()
     return (
-        <div className="bannercontainer flex justify-center items-center w-screen h-60 relative overflow-hidden" onClick={() => setIndex(index + 1)}>
+        <div className="bannercontainer flex justify-center items-center w-screen h-96 relative overflow-hidden" onClick={() => setIndex(index + 1)}>
             <Image src={cover[index % 4]}
                 fill={true}
                 alt="cover"
@@ -14,6 +16,11 @@ export default function Banner() {
             <div className="bannertext absolute transform -translate-y-1/2 text-center text-white">
                 <h1 className="text-4xl font-semibold">Vaccine Reservation</h1>
             </div>
+            <button
+                className="z-30 m-2 absolute bottom-0 right-0 py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-gray-600 transition-all text-sm"
+                onClick={(e) => { e.stopPropagation(); router.push("/hospital") }}>
+                Select Hospital
+            </button>
         </div>
     );
 }

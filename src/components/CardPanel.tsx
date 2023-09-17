@@ -1,6 +1,7 @@
-"user client"
+"use client"
 import { useReducer } from "react";
 import ProductCard from "./ProductCard";
+import Link from "next/link";
 
 type RatingAction = {
     type: "add" | "remove";
@@ -28,9 +29,12 @@ const ratingReducer = (ratingMap: Map<string, number | null>, action: RatingActi
 };
 
 export default function CardPanel() {
-
     const [ratingMap, dispatchRating] = useReducer(ratingReducer, new Map<string, number | null>());
-
+    const mockHospitalRepo = [
+        { id: "001", name: "Chula", image: "/img/chula.jpg" },
+        { id: "002", name: "Rajavithi", image: "/img/rajavithi.jpg" },
+        { id: "003", name: "Thammasat", image: "/img/thammasat.jpg" },
+    ]
     // Helper function to handle rating updates
     const handleRatingChange = (name: string, rating: number | null) => {
         dispatchRating({ type: "add", name, rating });
@@ -44,24 +48,18 @@ export default function CardPanel() {
     return (
         <div>
             <div className="flex flex-wrap justify-around items-center p-6">
-                <ProductCard
-                    name="Chula"
-                    imgSrc="/img/chula.jpg"
-                    initialRating={ratingMap.get("Chula") || null}
-                    onRatingChange={(rating: number | null) => handleRatingChange("Chula", rating)}
-                />
-                <ProductCard
-                    name="Rajavithi"
-                    imgSrc="/img/rajavithi.jpg"
-                    initialRating={ratingMap.get("Rajavithi") || null}
-                    onRatingChange={(rating: number | null) => handleRatingChange("Rajavithi", rating)}
-                />
-                <ProductCard
-                    name="Thammasat"
-                    imgSrc="/img/thammasat.jpg"
-                    initialRating={ratingMap.get("Thammasat") || null}
-                    onRatingChange={(rating: number | null) => handleRatingChange("Thammasat", rating)}
-                />
+                {
+                    mockHospitalRepo.map((hospital) => (
+                        <Link href={`/hospital/${hospital.id}`}>
+                            <ProductCard
+                                name={hospital.name}
+                                imgSrc={hospital.image}
+                                initialRating={ratingMap.get(hospital.name) || null}
+                                onRatingChange={(rating: number | null) => handleRatingChange(hospital.name, rating)}
+                            />
+                        </Link>
+                    ))
+                }
             </div>
             <div className="flex justify-center p-4 px-3 py-10 w-full max-w-md mx-auto">
                 <div className="w-full max-w-mdpx-3 bg-white shadow-md rounded-lg px-3 py-2 mb-4">
