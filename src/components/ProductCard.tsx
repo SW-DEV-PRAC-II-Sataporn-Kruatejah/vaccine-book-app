@@ -1,4 +1,4 @@
-"user client"
+"use client"
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import InteractiveCard from "./InteractiveCard";
@@ -12,18 +12,18 @@ export default function ProductCard({
 }: {
     name: string;
     imgSrc: string;
-    initialRating: number | null;
-    onRatingChange: (rating: number | null) => void;
+    initialRating?: number | null;
+    onRatingChange?: (rating: number | null) => void;
 }) {
-    const [rating, setRating] = useState<number | null>(initialRating);
+    const [rating, setRating] = useState<number | null>(initialRating || null);
 
     useEffect(() => {
-        setRating(initialRating);
+        setRating(initialRating || null);
     }, [initialRating]);
 
     const handleRatingChange = (newValue: number | null) => {
         setRating(newValue);
-        onRatingChange(newValue);
+        if (onRatingChange) onRatingChange(newValue);
     };
 
     return (
@@ -41,13 +41,17 @@ export default function ProductCard({
                 <div className="cardtext font-semibold text-base text-gray-800">
                     {name}
                 </div>
-                <div className="rating-container" onClick={(e)=>e.stopPropagation()}>
-                    <Rating
-                        name="simple-controlled"
-                        value={rating}
-                        onChange={(event, newValue) => handleRatingChange(newValue)}
-                    />
-                </div>
+                {
+                    onRatingChange ?
+                        <div className="rating-container" onClick={(e) => e.stopPropagation()}>
+                            <Rating
+                                name="simple-controlled"
+                                value={rating}
+                                onChange={(event, newValue) => handleRatingChange(newValue)}
+                            />
+                        </div>
+                        : ''
+                }
             </div>
         </InteractiveCard>
     );

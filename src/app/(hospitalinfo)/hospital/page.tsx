@@ -1,10 +1,15 @@
+import getHospitals from "@/libs/getHospitals"
+import HospitalCatalog from "@/components/HospitalCatalog"
+import { Suspense } from "react"
+import { LinearProgress } from "@mui/material"
 
-import CardPanel from "@/components/CardPanel"
-
-export default function Hospital(){
-    return(
-        <main>
-            <CardPanel />
+export default function Hospital() {
+    const hospitals = getHospitals()
+    return (
+        <main className="text-center p-5">
+            <Suspense fallback={<p>Loading...<LinearProgress /></p>}>
+                <HospitalCatalog hospitalJson={hospitals} />
+            </Suspense>
         </main>
     )
 }

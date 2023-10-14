@@ -1,32 +1,34 @@
 import Image from "next/image";
+import getHospital from "@/libs/getHospital";
 
-export default function HospitalDetailPage({ params }: { params: { hid: string } }) {
+export default async function HospitalDetailPage({ params }: { params: { hid: string } }) {
 
-    const mockHospitalRepo = new Map()
-    mockHospitalRepo.set("001", { name: "Chula", image: "/img/chula.jpg" })
-    mockHospitalRepo.set("002", { name: "Rajavithi", image: "/img/rajavithi.jpg" })
-    mockHospitalRepo.set("003", { name: "Thammasat", image: "/img/thammasat.jpg" })
 
-    const hospitalData = mockHospitalRepo.get(params.hid);
+    const hospitalData = await getHospital(params.hid);
 
     if (!hospitalData) {
         return <div>Hospital not found</div>;
     }
 
     return (
-        <div className="flex items-center justify-evenly my-10 mx-96 bg-white rounded-lg shadow-lg p-4">
+        <div className="flex justify-evenly my-10 mx-96 bg-white rounded-lg shadow-lg p-4">
             <div className="relative w-64 h-44 rounded-lg overflow-hidden shadow-sm">
                 <Image
-                    src={hospitalData.image}
-                    alt={hospitalData.name}
+                    src={hospitalData.data.picture}
+                    alt={hospitalData.data.name}
                     layout="fill"
                     objectFit="cover"
                 />
             </div>
-            <div className="mt-4 text-center">
+            <div className="mt-4">
                 <h1 className="text-xl font-semibold text-gray-800">
-                    {hospitalData.name}
+                    {hospitalData.data.name}
                 </h1>
+                <div>Address: {hospitalData.data.address}</div>
+                <div>District: {hospitalData.data.district}</div>
+                <div>Province: {hospitalData.data.province}</div>
+                <div>Postal code: {hospitalData.data.postalcode}</div>
+                <div>Tel: {hospitalData.data.tel}</div>
             </div>
         </div>
     );
