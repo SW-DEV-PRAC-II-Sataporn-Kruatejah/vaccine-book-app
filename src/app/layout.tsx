@@ -4,6 +4,7 @@ import TopMenu from '@/components/TopMenu'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import NextAuthProvider from '@/providers/NextAuthProvider'
+import ReduxProvider from '@/redux/ReduxProvider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,10 +22,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider session={nextAuthSession}>
-          <TopMenu />
-          {children}
-        </NextAuthProvider>
+        <ReduxProvider>
+          <NextAuthProvider session={nextAuthSession}>
+            <TopMenu />
+            {children}
+          </NextAuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   )

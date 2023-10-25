@@ -15,6 +15,8 @@ export default async function TopMenu() {
                         <TopMenuItem title={`Sign-Out of ${session.user?.name}`} pageRef="/api/auth/signout" />
                         : <TopMenuItem title={`Sign-In`} pageRef="/api/auth/signin" />
                 }
+                <TopMenuItem title="My Booking" pageRef="/mybooking" />
+
             </div>
             <div className="flex justify-start items-center z-30 flex-row-reverse h-full">
 

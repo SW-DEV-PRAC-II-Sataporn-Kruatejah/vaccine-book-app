@@ -13,7 +13,8 @@ export default async function Booking() {
     var createdAt = new Date(profile.data.createdAt);
 
     return (
-        <main>
+        <main className="flex flex-col items-center m-4">
+            <div className="text-xl font-medium"> User Information</div>
             < Paper elevation={3} sx={{ marginRight: "15%", marginLeft: "15%", marginTop: "30px", marginBottom: "30px" }}>
                 <Box sx={{ padding: 5 }}>
 
@@ -36,6 +37,7 @@ export default async function Booking() {
                     </table>
                 </Box>
             </Paper>
+            <div className="text-xl font-medium"> New Booking</div>
             <div className="bookingform">
                 <BookingForm />
             </div>
