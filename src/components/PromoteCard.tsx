@@ -12,7 +12,7 @@ export function PromoteCard() {
             <VideoPlayer isPlaying={playing} vdoSrc="/video/getvaccine.mp4"></VideoPlayer>
             <div className="m-5 flex flex-col w-full items-center justify-center">
                 Get your vaccine today.
-                <button
+                <button id="video-button"
                     className="w-20 block rounded-md bg-blue-600 hover:bg-blue-800 px-3 py-2 text-white shadow-sm"
                     onClick={() => setPlaying(!playing)}>
                     {playing ? "Pause" : "Play"}

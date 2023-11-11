@@ -25,8 +25,8 @@ export default function Banner() {
                         Hello {session.user?.name}
                     </div> : null
             }
-            <button
-                className="z-30 m-2 absolute bottom-0 right-0 py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-gray-600 transition-all text-sm"
+            <button id="hospitals-button"
+                className="z-30 m-2 absolute bottom-0 right-5 py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-gray-600 transition-all text-sm"
                 onClick={(e) => { e.stopPropagation(); router.push("/hospital") }}>
                 Select Hospital
             </button>
